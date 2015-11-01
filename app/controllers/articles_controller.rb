@@ -33,6 +33,11 @@ class ArticlesController < ApplicationController
   else
     render 'edit'
   end
+
+  def destroy
+    @article.destroy
+    redirect_to articles_path
+  end
 end
 
   private
