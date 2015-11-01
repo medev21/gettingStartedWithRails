@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
 
   before_action :find_article, only: [:show, :edit, :update, :destroy]
+
   def index
     @articles = Article.all
   end
@@ -28,17 +29,20 @@ class ArticlesController < ApplicationController
   end
 
   def update
-  if @article.update(article_params)
-    redirect_to @article
-  else
-    render 'edit'
+    if @article.update(article_params)
+      redirect_to @article
+    else
+      render 'edit'
+    end
   end
 
   def destroy
-    @article.destroy
-    redirect_to articles_path
+  # @article = Article.find(params[:id])
+  @article.destroy
+
+  redirect_to articles_path
   end
-end
+
 
   private
     def article_params
